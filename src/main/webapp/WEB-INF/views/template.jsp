@@ -13,11 +13,11 @@
 <body>
 
     <div class="container">
-        <h2>생각하는 데이터베이스 모델링</h2>
+        <h2>MVC 기반 온라인 쇼핑 카트 구현하기</h2>
         <div class="card">
-            <div class="card-header">Online Shopping</div>
-            <div class="card-body">Content</div>
-            <div class="card-footer">[7일 완성]생각하는 데이터베이스 모델링_박매일</div>
+            <div class="card-header">로그인 화면</div>
+            <div class="card-body">실제 제품 리스트/ 장바구니 리스트</div>
+            <div class="card-footer">생각하는 데이터베이스 모델링_박매일</div>
         </div>
     </div>
 

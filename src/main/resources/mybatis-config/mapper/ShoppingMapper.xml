@@ -4,6 +4,61 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis-config.mapper.ShoppingMapper">
 
+      <select id="productList" resultType="com.example.entity.Product" >
+             select * from product order by product_name asc
+      </select>
 
+      <select id="customer_login" parameterType="com.example.entity.Customer"
+                         resultType="com.example.entity.Customer">
+            select * from customer
+            where customer_id=#{customer_id} and password=#{password}
+      </select>
 
+      <insert id="cartAdd" parameterType="com.example.entity.CusPro">
+            INSERT INTO customer_product (customer_id, product_number, quantity)
+            VALUES(#{customer_id}, #{product_number}, 1)
+      </insert>
+
+      <select id="cartList" parameterType="String"
+                                                   resultType="com.example.entity.CusProProduct">
+            select cp.order_number, cp.product_number, p.product_name, cp.quantity, p.price, (cp.quantity*p.price) amount
+            from customer_product cp
+            inner join product p
+            on cp.product_number=p.product_number
+            where cp.customer_id=#{customer_id}
+      </select>
+
+      <select id="checkAdd" parameterType="com.example.entity.CusPro" resultType="com.example.entity.CusPro">
+            select * from customer_product
+            where customer_id=#{customer_id} and product_number=#{product_number}
+      </select>
+
+      <update id="cartUpdate" parameterType="com.example.entity.CusPro">
+            update customer_product
+            set quantity=quantity+1
+            where customer_id=#{customer_id} and product_number=#{product_number}
+      </update>
+
+      <select id="totalAmount" parameterType="String" resultType="int">
+            select
+            sum(cp.quantity*p.price) totalamount
+            from customer_product cp
+            inner join product p
+            on cp.product_number=p.product_number
+            where cp.customer_id=#{customer_id}
+      </select>
+
+      <delete id="cartCancel" parameterType="int">
+            delete from customer_product where order_number=#{order_number}
+      </delete>
+
+      <delete id="cartEmpty" parameterType="String">
+            delete from customer_product where customer_id=#{customer_id}
+      </delete>
+
+      <update id="pointSave" parameterType="com.example.entity.Customer">
+             update customer
+             set reserves=reserves+#{reserves}
+             where customer_id=#{customer_id}
+        </update>
 </mapper>
