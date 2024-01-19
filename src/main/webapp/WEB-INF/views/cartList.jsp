@@ -19,7 +19,7 @@
          $.ajax({
              url : "/shopping/empty",
              type : "get",
-             data : {"customer_id" : customer_id, "totalAmount" : ${totalAmount}},
+             data : {"customer_id" : customer_id, "totalAmount" : "${totalAmount}"},
              success : function(data){
                    alert("장바구니를 비웠습니다.");
                    location.href="/shopping/cartList?customer_id="+customer_id;
