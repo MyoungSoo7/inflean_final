@@ -90,4 +90,12 @@ public class ShopMyBatisDAO { // MyBatis API
           session.close();
           return cnt;
       }
+
+      public  int updateQuantity(CusPro dto){
+          SqlSession session=sqlSessionFactory.openSession();
+          int cnt=session.update("updateQuantity", dto);
+          session.commit();
+          session.close();
+          return cnt;
+      }
 }

@@ -31,6 +31,19 @@
              return false;
          }
    }
+   function goQuantity(order_number){
+        var quantity=$("#quantity"+order_number).val();
+        //alert(quantity);
+        $.ajax({
+             url : "/shopping/quantity",
+             type : "post",
+             data : { "order_number" : order_number, "quantity" : quantity  },
+             success : function(cnt){
+                  location.href="/shopping/cartList?customer_id=${cusDto.customer_id}";
+             },
+             error : function(){  alert("error"); }
+           });
+   }
 </script>
 </head>
 <body>
@@ -92,7 +105,7 @@
                        <tr>
                               <td>${cart.product_number}</td>
                                <td>${cart.product_name}</td>
-                               <td>${cart.quantity}</td>
+                               <td><input type="number" onchange="goQuantity(${cart.order_number})" name="quantity" id="quantity${cart.order_number}" min="1" max="5" class="form-control" value="${cart.quantity}"/></td>
                                <td>${cart.price}</td>
                                <td>${cart.amount}</td>
                                <td class="text-center"><button type="button"  onclick="goCancel(${cart.order_number},'${cusDto.customer_id}')" class="btn btn-sm btn-secondary">Cancel</button></td>

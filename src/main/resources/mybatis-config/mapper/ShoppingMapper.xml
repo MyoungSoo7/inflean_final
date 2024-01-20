@@ -61,4 +61,11 @@
              set reserves=reserves+#{reserves}
              where customer_id=#{customer_id}
         </update>
+
+      <update id="updateQuantity" parameterType="com.example.entity.CusPro">
+            update customer_product
+            set quantity=#{quantity}
+            where order_number=#{order_number}
+      </update>
+
 </mapper>
